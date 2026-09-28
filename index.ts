@@ -96,7 +96,7 @@ export function getCurrentExperience() {
 /**
  * Helper function to get skills by category
  */
-import { skills, skillsByCategory } from './data/skills';
+import { skills } from './data/skills';
 
 export function getSkillsByProficiency(proficiency: 'expert' | 'advanced' | 'intermediate' | 'beginner') {
   return skills.filter(skill => skill.proficiency === proficiency);
@@ -107,7 +107,7 @@ export function getSkillsByProficiency(proficiency: 'expert' | 'advanced' | 'int
  */
 export function searchProjectsByTech(techName: string) {
   return projects.filter(project =>
-    project.technologies.some(tech =>
+    project.technologies.some((tech: any) =>
       tech.name.toLowerCase().includes(techName.toLowerCase())
     )
   );
