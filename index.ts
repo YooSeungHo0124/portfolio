@@ -39,6 +39,9 @@ export {
   i18n
 } from './data/config';
 
+// Type imports
+import type { TechStackItem } from './types/index';
+
 // Type exports
 export type {
   Project,
@@ -119,7 +122,7 @@ export function searchProjectsByTech(techName: string) {
 export function getAllUniqueTechnologies() {
   const techSet = new Set<string>();
   projects.forEach(project => {
-    project.technologies.forEach(tech => {
+    project.technologies.forEach((tech: TechStackItem) => {
       techSet.add(tech.name);
     });
   });

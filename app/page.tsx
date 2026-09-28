@@ -6,9 +6,13 @@ import { ProjectsGrid } from '@/components/ProjectsGrid'
 import { SkillsSection } from '@/components/SkillsSection'
 import { ExperienceTimeline } from '@/components/ExperienceTimeline'
 import { ContactSection } from '@/components/ContactSection'
-import { projects, experiences, skills, aboutContent } from '@/data'
+import { projects, experiences, skillsByCategory, aboutContent } from '@/data'
 
 export default function Home() {
+  const skillsArray = Object.entries(skillsByCategory).map(([key, skills]) => ({
+    name: key.charAt(0).toUpperCase() + key.slice(1),
+    skills: skills
+  }))
   const handleNavClick = (section: string) => {
     const element = document.getElementById(section)
     element?.scrollIntoView({ behavior: 'smooth' })
@@ -58,7 +62,7 @@ export default function Home() {
               </p>
             </div>
             <SkillsSection
-              categories={skills as any}
+              categories={skillsArray}
               title=""
               description=""
             />

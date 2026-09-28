@@ -67,7 +67,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
           <div className="flex items-center gap-3 text-sm text-gray-600">
             {category && <span className="font-medium text-gray-700">{category}</span>}
-            {period && <span>{period}</span>}
+            {period && (
+              <span>
+                {typeof period === 'string'
+                  ? period
+                  : `${period.start} - ${period.end}`}
+              </span>
+            )}
           </div>
         </div>
 

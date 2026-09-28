@@ -44,7 +44,11 @@ export const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
                       <p className="text-lg text-blue-600 font-medium">{exp.company}</p>
                     </div>
 
-                    <p className="text-sm text-gray-500 font-medium">{exp.period}</p>
+                    <p className="text-sm text-gray-500 font-medium">
+                      {typeof exp.period === 'string'
+                        ? exp.period
+                        : `${exp.period.start} - ${exp.period.end}`}
+                    </p>
 
                     <p className="text-gray-700 leading-relaxed">{exp.description}</p>
 
