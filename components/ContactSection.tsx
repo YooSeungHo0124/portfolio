@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Github, Linkedin, ExternalLink } from 'lucide-react';
+import { Mail, Github, Linkedin } from 'lucide-react';
 
 interface SocialLink {
   name: string;

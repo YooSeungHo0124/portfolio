@@ -1,26 +1,8 @@
 import React from 'react';
 import { ProjectCard } from './ProjectCard';
 
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  techStack: Array<{
-    name: string;
-    icon?: React.ReactNode;
-  }>;
-  links?: {
-    github?: string;
-    demo?: string;
-  };
-  period?: string;
-  featured?: boolean;
-  category?: string;
-  image?: string;
-}
-
 interface ProjectsGridProps {
-  projects?: Project[];
+  projects?: any[];
   groupByCategory?: boolean;
   featuredFirst?: boolean;
   columns?: 1 | 2 | 3;
@@ -59,7 +41,7 @@ export const ProjectsGrid: React.FC<ProjectsGridProps> = ({
       return { 'All Projects': sortedProjects };
     }
 
-    const groups: Record<string, Project[]> = {};
+    const groups: Record<string, any[]> = {};
     sortedProjects.forEach((project) => {
       const category = project.category || 'Other';
       if (!groups[category]) {

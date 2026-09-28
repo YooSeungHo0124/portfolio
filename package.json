@@ -11,11 +11,10 @@
     "validate-data": "tsc --noEmit && echo 'All data types are valid!'"
   },
   "dependencies": {
-    "react": "^19.0.0-rc",
-    "react-dom": "^19.0.0-rc",
-    "next": "15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next": "^15.0.0",
     "tailwindcss": "^3.4.0",
-    "shadcn-ui": "latest",
     "lucide-react": "^0.408.0",
     "clsx": "^2.1.0"
   },

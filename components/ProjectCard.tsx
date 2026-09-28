@@ -3,17 +3,12 @@ import { Github, ExternalLink } from 'lucide-react';
 import { Badge } from './Badge';
 
 interface ProjectCardProps {
-  title: string;
-  description: string;
-  techStack: Array<{
-    name: string;
-    icon?: React.ReactNode;
-  }>;
-  links?: {
-    github?: string;
-    demo?: string;
-  };
-  period?: string;
+  title?: string;
+  description?: string;
+  techStack?: any[];
+  technologies?: any[];
+  links?: any;
+  period?: any;
   featured?: boolean;
   category?: string;
   image?: string;
@@ -23,6 +18,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   title,
   description,
   techStack,
+  technologies,
   links = {},
   period,
   featured = false,
@@ -82,8 +78,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
         {/* Tech Stack */}
         <div className="flex flex-wrap gap-2 pt-2">
-          {techStack.map((tech) => (
-            <Badge key={tech.name} text={tech.name} icon={tech.icon} variant="outline" />
+          {(techStack || technologies || []).map((tech: any) => (
+            <Badge key={tech?.name} text={tech?.name} icon={tech?.icon} variant="outline" />
           ))}
         </div>
 

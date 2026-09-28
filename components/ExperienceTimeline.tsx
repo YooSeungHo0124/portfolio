@@ -1,16 +1,7 @@
 import React from 'react';
 
-interface Experience {
-  id: string;
-  company: string;
-  role: string;
-  period: string;
-  description: string;
-  highlights?: string[];
-}
-
 interface ExperienceTimelineProps {
-  experiences?: Experience[];
+  experiences?: any[];
   title?: string;
 }
 
@@ -59,7 +50,7 @@ export const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
 
                     {exp.highlights && exp.highlights.length > 0 && (
                       <ul className="space-y-1 pt-2">
-                        {exp.highlights.map((highlight, idx) => (
+                        {exp.highlights.map((highlight: any, idx: number) => (
                           <li
                             key={idx}
                             className="text-sm text-gray-600 flex items-start gap-2"

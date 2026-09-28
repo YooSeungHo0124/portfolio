@@ -1,16 +1,8 @@
 import React from 'react';
 import { Badge } from './Badge';
 
-interface SkillCategory {
-  name: string;
-  skills: Array<{
-    name: string;
-    icon?: React.ReactNode;
-  }>;
-}
-
 interface SkillsSectionProps {
-  categories?: SkillCategory[];
+  categories?: any[];
   title?: string;
   description?: string;
 }
@@ -20,7 +12,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
   title = 'Skills & Expertise',
   description = 'Technologies and tools I work with',
 }) => {
-  const defaultCategories: SkillCategory[] = [
+  const defaultCategories: any[] = [
     {
       name: 'Languages',
       skills: [
@@ -83,7 +75,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
             <div key={category.name} className="space-y-4">
               <h3 className="text-lg font-semibold text-gray-900">{category.name}</h3>
               <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
+                {category.skills.map((skill: any) => (
                   <Badge
                     key={skill.name}
                     text={skill.name}

@@ -1,47 +1,33 @@
 'use client'
 
-import { useState } from 'react'
 import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
 import { ProjectsGrid } from '@/components/ProjectsGrid'
 import { SkillsSection } from '@/components/SkillsSection'
 import { ExperienceTimeline } from '@/components/ExperienceTimeline'
 import { ContactSection } from '@/components/ContactSection'
-import {
-  projects,
-  experiences,
-  skills,
-  aboutContent,
-  portfolioConfig,
-} from '@/data'
+import { projects, experiences, skills, aboutContent } from '@/data'
 
 export default function Home() {
-  const [activeNav, setActiveNav] = useState<string>('home')
-
   const handleNavClick = (section: string) => {
-    setActiveNav(section)
-    // Scroll to section
     const element = document.getElementById(section)
     element?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
     <div className="min-h-screen bg-white">
-      <Header
-        name={portfolioConfig.name}
-        onNavClick={handleNavClick}
-      />
+      <Header name="Seung Ho Yu" onNavClick={handleNavClick} />
 
       <main className="max-w-6xl mx-auto">
         {/* Hero Section */}
         <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
           <Hero
-            name={aboutContent.name}
-            title={aboutContent.title}
-            description={aboutContent.bio}
-            profileImage={aboutContent.profileImage}
+            name="Seung Ho Yu"
+            title="AI/ML Engineer & Full-Stack Developer"
+            description={aboutContent.introduction}
+            profileImage={undefined}
             onViewProjects={() => handleNavClick('projects')}
-            onGetInTouch={() => handleNavClick('contact')}
+            onContact={() => handleNavClick('contact')}
           />
         </section>
 
@@ -55,7 +41,7 @@ export default function Home() {
               </p>
             </div>
             <ProjectsGrid
-              projects={projects}
+              projects={projects as any}
               featuredFirst={true}
               groupByCategory={false}
             />
@@ -72,7 +58,7 @@ export default function Home() {
               </p>
             </div>
             <SkillsSection
-              categories={skills}
+              categories={skills as any}
               title=""
               description=""
             />
@@ -89,7 +75,7 @@ export default function Home() {
               </p>
             </div>
             <ExperienceTimeline
-              experiences={experiences}
+              experiences={experiences as any}
               title=""
             />
           </div>
