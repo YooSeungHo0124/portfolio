@@ -8,6 +8,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        paper: '#FAFAF5',
+        ink: '#1A1C17',
+        body: '#3D4039',
+        subtle: '#6E7268',
+        label: '#5F645A',
+        line: '#E3E4DA',
+        'line-strong': '#D9DBCF',
+        brand: {
+          DEFAULT: '#3F7D58',
+          dot: '#5BAA76',
+        },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -41,6 +52,10 @@ const config: Config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+      },
+      fontFamily: {
+        sans: ['"Pretendard Variable"', 'Pretendard', 'system-ui', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
       },
       borderRadius: {
         lg: 'var(--radius)',

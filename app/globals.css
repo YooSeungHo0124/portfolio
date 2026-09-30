@@ -4,43 +4,63 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.6%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.6%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.6%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 9.0%;
-    --accent-foreground: 0 0% 98%;
+    --background: 60 27% 97%;
+    --foreground: 72 10% 10%;
+    --card: 60 27% 98%;
+    --card-foreground: 72 10% 10%;
+    --popover: 60 27% 98%;
+    --popover-foreground: 72 10% 10%;
+    --muted: 60 20% 94%;
+    --muted-foreground: 85 6% 43%;
+    --accent: 72 10% 10%;
+    --accent-foreground: 60 27% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --primary: 0 0% 9.0%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9.0%;
-    --ring: 0 0% 3.6%;
-    --radius: 0.5rem;
+    --border: 66 14% 88%;
+    --input: 66 14% 88%;
+    --primary: 72 10% 10%;
+    --primary-foreground: 60 27% 98%;
+    --secondary: 60 20% 94%;
+    --secondary-foreground: 72 10% 10%;
+    --ring: 72 10% 10%;
+    --radius: 0.25rem;
   }
 
   * {
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground;
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
-}
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
 
-html {
-  scroll-behavior: smooth;
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
 }

@@ -47,3 +47,6 @@ next-env.d.ts
 # personal documents — never commit (résumé PDF, internal training report)
 /*.pdf
 /*.docx
+
+# local-only guard words (real names)
+/scripts/denylist.local.txt
