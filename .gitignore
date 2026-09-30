@@ -43,3 +43,7 @@ next-env.d.ts
 *.swp
 *.swo
 *~
+
+# personal documents — never commit (résumé PDF, internal training report)
+/*.pdf
+/*.docx
