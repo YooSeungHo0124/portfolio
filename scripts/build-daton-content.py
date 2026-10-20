@@ -35,7 +35,7 @@ if _deny.exists():
     if _words:
         BLOCK = re.compile(BLOCK.pattern + '|' + '|'.join(re.escape(w) for w in _words), re.I)
 KEEP = ('id', 'title', 'kicker', 'period', 'role', 'oneLiner', 'stats', 'problem', 'approach',
-        'architecture', 'challenges', 'results', 'stack', 'lessons')
+        'architecture', 'challenges', 'results', 'stack', 'lessons', 'highlights')
 
 
 def scan(o, path, bad):
@@ -54,6 +54,14 @@ def scan(o, path, bad):
 
 def load(pid, bad):
     d = json.loads((SRC / f'{pid}.json').read_text())
+    # verified deliberation result (headline stats + key decisions) overrides the draft
+    fv2 = SRC.parent / 'final_v2' / f'{pid}.json'
+    if fv2.exists():
+        fin = json.loads(fv2.read_text())
+        if 'stats' in fin:
+            d['stats'] = fin['stats']
+        if fin.get('highlights'):
+            d['highlights'] = fin['highlights']
     d = {k: d[k] for k in KEEP if k in d and d[k] not in (None, '', [])}
     scan(d, pid, bad)
     return d

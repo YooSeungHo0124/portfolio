@@ -7,7 +7,7 @@ export type ProjectContent = {
   period?: string
   role?: string
   oneLiner: string
-  stats: { value: string; label: string }[]
+  stats?: { value: string; label: string; note?: string }[]
   problem: string
   approach: { title: string; body: string }[]
   architecture?: string
@@ -15,6 +15,7 @@ export type ProjectContent = {
   results: { metric: string; before?: string; after?: string; condition?: string }[]
   stack?: string[]
   lessons?: string[]
+  highlights?: { title: string; body: string }[]
   links?: { label: string; url: string }[]
   slides?: { src: string; caption: string }[]
   pdf?: { href: string; label: string; pages?: number }
@@ -26,12 +27,11 @@ const statCols: Record<number, string> = {
   1: 'md:grid-cols-1',
   2: 'md:grid-cols-2',
   3: 'md:grid-cols-3',
-  4: 'md:grid-cols-4',
+  4: 'md:grid-cols-2',
   5: 'md:grid-cols-5',
 }
 
 const eyebrow = 'font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-label'
-const chip = 'inline-block border border-line-strong px-3 py-1 font-mono text-[12px] text-ink rounded-sm'
 
 function Block({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -43,7 +43,8 @@ function Block({ label, children }: { label: string; children: React.ReactNode }
 }
 
 export function ProjectDetail({ p, index }: { p: ProjectContent; index: number }) {
-  const hasBeforeAfter = p.results.some((r) => r.before || r.after)
+  const hasBefore = p.results.some((r) => r.before)
+  const hasCondition = p.results.some((r) => r.condition)
   return (
     <section id={p.id} className="border-t border-line-strong pt-16 pb-6 scroll-mt-6">
       <p className={`${eyebrow} mb-3`}>
@@ -80,16 +81,34 @@ export function ProjectDetail({ p, index }: { p: ProjectContent; index: number }
         </div>
       )}
 
-      {p.stats.length > 0 && (
+      {p.stats && p.stats.length > 0 && (
         <div
-          className={`grid grid-cols-2 ${statCols[Math.min(p.stats.length, 5)] ?? 'md:grid-cols-4'} gap-px bg-line-strong border border-line-strong mb-10 mt-6`}
+          className={`grid grid-cols-2 ${statCols[Math.min(p.stats?.length ?? 4, 5)] ?? 'md:grid-cols-4'} gap-px bg-line-strong border border-line-strong mb-10 mt-6`}
         >
           {p.stats.map((s) => (
-            <div key={s.label} className="bg-paper p-4 md:p-5">
-              <div className="text-[28px] font-medium tracking-[-0.03em] text-brand leading-none mb-2">{s.value}</div>
-              <div className="text-[13px] text-subtle leading-snug">{s.label}</div>
+            <div key={s.label} className="bg-paper p-5 md:p-6">
+              <div className="text-[26px] font-medium tracking-[-0.03em] text-brand leading-tight mb-3 break-keep">{s.value}</div>
+              <div className="text-[14px] text-ink leading-[1.6] break-keep">{s.label}</div>
+              {s.note && <div className="mt-2 text-[12px] text-subtle leading-[1.6] break-keep">{s.note}</div>}
             </div>
           ))}
+        </div>
+      )}
+
+      {p.highlights && p.highlights.length > 0 && (
+        <div className="mb-10">
+          <p className={`${eyebrow} mb-4`}>Key decisions</p>
+          <div
+            className={`grid grid-cols-1 ${p.highlights.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-px bg-line-strong border border-line-strong`}
+          >
+            {p.highlights.map((h, i) => (
+              <div key={h.title} className="bg-paper p-5">
+                <div className="font-mono text-[12px] text-brand mb-2">{String(i + 1).padStart(2, '0')}</div>
+                <h4 className="text-[16px] font-medium text-ink mb-2 leading-snug">{h.title}</h4>
+                <p className="text-[13.5px] text-body leading-[1.7]">{h.body}</p>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
@@ -99,7 +118,7 @@ export function ProjectDetail({ p, index }: { p: ProjectContent; index: number }
 
       {p.architecture && (
         <Block label="Architecture">
-          <pre className="font-mono text-[12px] leading-[1.6] text-body bg-paper border border-line-strong p-4 overflow-x-auto whitespace-pre">
+          <pre className="font-diagram text-[12.5px] leading-[1.5] text-body bg-paper border border-line-strong p-4 overflow-x-auto whitespace-pre">
             {p.architecture}
           </pre>
         </Block>
@@ -158,16 +177,16 @@ export function ProjectDetail({ p, index }: { p: ProjectContent; index: number }
             <thead>
               <tr className="border-b border-line-strong font-mono text-[11px] uppercase tracking-[0.06em] text-label">
                 <th className="py-2 pr-4 font-medium">Metric</th>
-                {hasBeforeAfter && <th className="py-2 pr-4 font-medium">Before</th>}
-                <th className="py-2 pr-4 font-medium">{hasBeforeAfter ? 'After' : 'Value'}</th>
-                <th className="py-2 font-medium">Condition</th>
+                {hasBefore && <th className="py-2 pr-4 font-medium">Before</th>}
+                <th className="py-2 pr-4 font-medium">{hasBefore ? 'After' : 'Result'}</th>
+                {hasCondition && <th className="py-2 font-medium">Condition</th>}
               </tr>
             </thead>
             <tbody>
               {p.results.map((r) => (
                 <tr key={r.metric} className="border-b border-line align-top">
-                  <td className="py-3 pr-4 text-ink">{r.metric}</td>
-                  {hasBeforeAfter && <td className="py-3 pr-4 text-subtle">{r.before ?? '—'}</td>}
+                  <td className="py-3 pr-4 text-ink min-w-[9.5rem] break-keep">{r.metric}</td>
+                  {hasBefore && <td className="py-3 pr-4 text-subtle min-w-[7rem]">{r.before ?? '—'}</td>}
                   <td
                     className={`py-3 pr-4 ${
                       (r.after ?? r.before ?? '').length <= 28 ? 'font-medium text-brand' : 'text-ink'
@@ -175,7 +194,7 @@ export function ProjectDetail({ p, index }: { p: ProjectContent; index: number }
                   >
                     {r.after ?? r.before ?? '—'}
                   </td>
-                  <td className="py-3 text-subtle">{r.condition ?? ''}</td>
+                  {hasCondition && <td className="py-3 text-subtle min-w-[10rem]">{r.condition ?? ''}</td>}
                 </tr>
               ))}
             </tbody>
@@ -209,18 +228,6 @@ export function ProjectDetail({ p, index }: { p: ProjectContent; index: number }
               </li>
             ))}
           </ul>
-        </Block>
-      )}
-
-      {p.stack && p.stack.length > 0 && (
-        <Block label="Stack">
-          <div className="flex flex-wrap gap-2">
-            {p.stack.map((t) => (
-              <span key={t} className={chip}>
-                {t}
-              </span>
-            ))}
-          </div>
         </Block>
       )}
     </section>

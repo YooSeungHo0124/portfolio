@@ -56,6 +56,7 @@ const config: Config = {
       fontFamily: {
         sans: ['"Pretendard Variable"', 'Pretendard', 'system-ui', 'sans-serif'],
         mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
+        diagram: ['"Nanum Gothic Coding"', '"IBM Plex Mono"', 'ui-monospace', 'monospace'],
       },
       borderRadius: {
         lg: 'var(--radius)',

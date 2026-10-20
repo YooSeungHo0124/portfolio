@@ -42,7 +42,7 @@ export function ProjectCollectionPage({
         </section>
 
         <nav className="border-y border-line py-6 mb-4">
-          <p className={`${eyebrow} mb-4`}>Contents</p>
+          <p className={`${eyebrow} mb-4`}>목차</p>
           <ol className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-2">
             {projects.map((p, i) => (
               <li key={p.id}>
@@ -67,7 +67,7 @@ export function ProjectCollectionPage({
             href="/"
             className="inline-flex items-center gap-2 font-mono text-[12px] text-ink hover:text-brand transition"
           >
-            <ArrowLeft size={14} strokeWidth={1.5} /> Back to portfolio
+            <ArrowLeft size={14} strokeWidth={1.5} /> 포트폴리오로 돌아가기
           </Link>
           <div className="flex flex-col items-end gap-1 font-mono text-[12px]">
             {EMAILS.map((e) => (

@@ -44,6 +44,7 @@
     text-rendering: optimizeLegibility;
     word-break: keep-all;
     overflow-wrap: break-word;
+    text-wrap: pretty;
   }
 
   h1,
@@ -58,6 +59,10 @@
   p,
   li {
     text-wrap: pretty;
+  }
+
+  pre {
+    font-family: 'Nanum Gothic Coding', 'IBM Plex Mono', ui-monospace, monospace;
   }
 
   summary::-webkit-details-marker {

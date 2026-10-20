@@ -10,12 +10,12 @@ export const metadata: Metadata = {
 export default function DatonPage() {
   return (
     <ProjectCollectionPage
-      eyebrowText="Daton · Multimodal Research Lab · 2025.12 — NOW"
+      eyebrowText="Daton · 멀티모달연구소 · 2025.12 — NOW"
       headline={
         <>
-          Building AI that runs
+          온프레미스에서,
           <br />
-          <span className="text-brand">on-premise, in real time.</span>
+          <span className="text-brand">실시간으로 동작하는 AI.</span>
         </>
       }
       intro="실시간 CCTV 관제 제품의 추론 구조, VLM 2차 판정, 한국어 설명 모델, 관제 채팅 라우터, GPU 서버 학습 파이프라인, 그리고 정부과제 RT 필름 자동판독까지. 무엇을 만들었는지뿐 아니라 어디서 막혔고 무엇을 선택했는지를 측정값과 함께 기록했습니다."
