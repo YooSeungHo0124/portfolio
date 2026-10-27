@@ -17,7 +17,8 @@ export type ProjectContent = {
   lessons?: string[]
   highlights?: { title: string; body: string }[]
   links?: { label: string; url: string }[]
-  slides?: { src: string; caption: string }[]
+  slides?: { src: string; caption: string; wide?: boolean }[]
+  video?: { src: string; caption: string }
   pdf?: { href: string; label: string; pages?: number }
 }
 
@@ -202,14 +203,36 @@ export function ProjectDetail({ p, index }: { p: ProjectContent; index: number }
         </div>
       </Block>
 
+      {p.video && (
+        <Block label="Video">
+          <figure className="border border-line-strong bg-paper max-w-[820px]">
+            <video
+              src={`${BASE}${p.video.src}`}
+              controls
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="w-full aspect-video bg-ink"
+            />
+            <figcaption className="px-3 py-2 text-[12.5px] text-subtle leading-snug">{p.video.caption}</figcaption>
+          </figure>
+        </Block>
+      )}
+
       {p.slides && p.slides.length > 0 && (
         <Block label="Slides">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-[820px]">
             {p.slides.map((sl) => (
-              <figure key={sl.src} className="border border-line-strong bg-paper">
+              <figure key={sl.src} className={`border border-line-strong bg-paper ${sl.wide ? 'sm:col-span-2' : ''}`}>
                 <a href={`${BASE}${sl.src}`} target="_blank" rel="noopener noreferrer" className="block">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={`${BASE}${sl.src}`} alt={sl.caption} loading="lazy" className="w-full aspect-video object-cover" />
+                  <img
+                    src={`${BASE}${sl.src}`}
+                    alt={sl.caption}
+                    loading="lazy"
+                    className={sl.wide ? 'w-full h-auto' : 'w-full aspect-video object-cover'}
+                  />
                 </a>
                 <figcaption className="px-3 py-2 text-[12.5px] text-subtle leading-snug">{sl.caption}</figcaption>
               </figure>

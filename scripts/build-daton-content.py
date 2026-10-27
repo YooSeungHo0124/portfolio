@@ -36,7 +36,7 @@ if _deny.exists():
     if _words:
         BLOCK = re.compile(BLOCK.pattern + '|' + '|'.join(re.escape(w) for w in _words), re.I)
 KEEP = ('id', 'title', 'kicker', 'period', 'role', 'oneLiner', 'stats', 'problem', 'approach',
-        'architecture', 'challenges', 'results', 'stack', 'lessons', 'highlights', 'slides', 'links')
+        'architecture', 'challenges', 'results', 'stack', 'lessons', 'highlights', 'slides', 'links', 'video')
 
 
 def scan(o, path, bad):

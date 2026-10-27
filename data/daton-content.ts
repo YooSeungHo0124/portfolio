@@ -1202,6 +1202,11 @@ export const datonProjects: ProjectContent[] = [
       {
         "src": "/slides/live-case/smoke-detection.jpg",
         "caption": "사내 카메라 프레임에서 연기 영역이 탐지된 장면 (2026-10-27, 위치 식별이 되는 간판은 블러 처리)"
+      },
+      {
+        "src": "/slides/live-case/ai-analysis.png",
+        "caption": "같은 이벤트에 대한 VLM 판정 화면. 연기 여부 \"예\"와 장면 설명이 생성됨",
+        "wide": true
       }
     ],
     "links": [
@@ -1209,6 +1214,10 @@ export const datonProjects: ProjectContent[] = [
         "label": "관련 기사 (경향신문)",
         "url": "https://www.khan.co.kr/article/202610272100001/"
       }
-    ]
+    ],
+    "video": {
+      "src": "/slides/live-case/smoke-detection.mp4",
+      "caption": "탐지 박스가 표시된 실제 영상 클립 (약 7초, 위치 식별 영역은 블러 처리)"
+    }
   }
 ]
