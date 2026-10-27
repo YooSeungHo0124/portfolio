@@ -20,6 +20,7 @@ ORDER = [
     'training-infra',
     'rt-film',
     'engineering-log',
+    'live-fire-case',
 ]
 OTHER = []
 
@@ -35,7 +36,7 @@ if _deny.exists():
     if _words:
         BLOCK = re.compile(BLOCK.pattern + '|' + '|'.join(re.escape(w) for w in _words), re.I)
 KEEP = ('id', 'title', 'kicker', 'period', 'role', 'oneLiner', 'stats', 'problem', 'approach',
-        'architecture', 'challenges', 'results', 'stack', 'lessons', 'highlights')
+        'architecture', 'challenges', 'results', 'stack', 'lessons', 'highlights', 'slides', 'links')
 
 
 def scan(o, path, bad):
