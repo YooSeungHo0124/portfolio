@@ -595,14 +595,6 @@ export default function Home() {
           </div>
         </nav>
 
-        <div className="px-6 mb-8">
-          <p className="flex items-center gap-2 font-mono text-[12px] text-ink mb-1">
-            <span className="h-[6px] w-[6px] rounded-full bg-brand-dot" />
-            새로운 기회 환영
-          </p>
-          <p className="font-mono text-[11px] text-subtle">AI/ML · Vision · LLM/VLM</p>
-        </div>
-
         <div className="border-t border-line">
           {EMAILS.map((e) => (
             <a
