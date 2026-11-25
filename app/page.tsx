@@ -112,7 +112,7 @@ const datonCards = [
 const journey = [
   {
     date: '2025.12 — NOW',
-    title: 'Daton · 멀티모달연구소 팀러닝팀 연구원',
+    title: 'Daton · 멀티모달연구소 딥러닝팀 연구원',
     desc: '온프레미스 CCTV 관제 · 비파괴 검사 필름 OCR 및 이상감지',
   },
   {
